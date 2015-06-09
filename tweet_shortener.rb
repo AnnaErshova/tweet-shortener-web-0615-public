@@ -26,9 +26,7 @@ end
 
 # tweet shortener #bulk_tweet_shortener shortens each tweet and prints the results
 def bulk_tweet_shortener(tweets) # tweets is going to be an array of many tweets
-  tweets.each do |tweet|
-    puts word_substituter(tweet)
-  end
+  tweets.each {|tweet| puts word_substituter(tweet)}
 end
 
 
@@ -44,7 +42,7 @@ def selective_tweet_shortener(tweet)
 end
 
 # Things are going great, but you're noticing that some tweets are too long still, 
-# even after substituting shorter words. Being the conscientious developer that you are, 
+# even after substituting shorter words. (so after words_substituter?) Being the conscientious developer that you are, 
 # you talk to the client about this scenario and decide together that the best thing to do is 
 # just truncate the string to 140 characters if it's still too long after you do the substitution.
 
@@ -56,10 +54,10 @@ end
 
 def shortened_tweet_truncator(tweet)
   # assuming tweet is a string
-  if selective_tweet_shortener(tweet).length > 140
-    puts "#{tweet[0..135]} ..." # is there a space before ellipsis
-  else
-    selective_tweet_shortener(tweet)
-  end
+  tweet.size > 140 ? "#{tweet[0..136]}..." : tweet
 end
+
+
+
+
 
