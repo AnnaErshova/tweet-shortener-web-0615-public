@@ -1,5 +1,5 @@
 
-# replaces long words with their expected short form
+# replaces long words with their expected short form from an array
 
 def word_substituter(tweet)
   substitutes = {
@@ -14,18 +14,11 @@ def word_substituter(tweet)
   "and" => "&"
 }
   output_array = [] # creating an empty array in which to dumb the output
-  # assume tweet is a regular sentence
-  output_tweet = tweet.split(" ") # returns an array
-  output_array = output_tweet.collect do |word| # iterate over the array
-    if substitutes.keys.include?(word) 
-      word = substitutes[word]
-    else
-      word
-    end
-  end
-  output_array.join(" ") # convert it back from array into string
+  # assumes tweet is a regular sentence
+  # split returns an array, then we iterate over the array
+  # this is ideal for a ternary 
+  output_array = (tweet.split(" ").collect {|word| substitutes.keys.include?(word) ? substitutes[word] : word }).join(" ")
 end
-
 
 # shortens each tweet and prints the results
 # shortens tweets that are more than 140 characters 
